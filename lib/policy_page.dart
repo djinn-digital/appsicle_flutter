@@ -1,4 +1,5 @@
 import 'package:appsicle_flutter/common.dart';
+import 'package:appsicle_flutter/types/html_render_props.dart';
 import 'package:appsicle_flutter/types/page.dart';
 import 'package:appsicle_flutter/types/policy_page.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,13 @@ import 'package:flutter_html/flutter_html.dart';
 class PolicyComponent extends StatefulWidget {
   final String siteId;
   final String pageId;
+  final HtmlRenderProps? htmlRenderProps;
 
-  const PolicyComponent({Key? key, required this.siteId, required this.pageId})
+  const PolicyComponent(
+      {Key? key,
+      required this.siteId,
+      required this.pageId,
+      this.htmlRenderProps})
       : super(key: key);
 
   @override
@@ -39,7 +45,10 @@ class _PolicyComponentState extends State<PolicyComponent> {
                   fontSize:
                       getVariableForLevel(levels, [22.0, 20.0, 18.0, 16.0]))),
         ),
-        Html(data: section.content),
+        Html(
+          data: section.content,
+          onLinkTap: widget.htmlRenderProps?.onLinkTap,
+        ),
         if (section.items.isNotEmpty)
           renderSectionContainer(section.items, parentIndex: index)
       ],
@@ -100,7 +109,10 @@ class _PolicyComponentState extends State<PolicyComponent> {
                   child: Container(
                 child: Column(children: [
                   if (introHtml != null)
-                    Container(child: Html(data: introHtml)),
+                    Html(
+                      data: introHtml,
+                      onLinkTap: widget.htmlRenderProps?.onLinkTap,
+                    ),
                   renderSectionContainer(sections, parentIndex: '')
                 ]),
                 padding: const EdgeInsets.all(5),
