@@ -25,7 +25,7 @@ class Network {
       return Future.error(res);
     }
 
-    return json.decode(res.body);
+    return json.decode(utf8.decode(res.bodyBytes));
   }
 
   Map<String, String> setHeaders({String contentType = 'application/json'}) => {

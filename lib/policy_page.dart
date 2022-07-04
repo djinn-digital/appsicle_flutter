@@ -48,6 +48,16 @@ class _PolicyComponentState extends State<PolicyComponent> {
         Html(
           data: section.content,
           onLinkTap: widget.htmlRenderProps?.onLinkTap,
+          style: {
+            'li': Style(
+                padding: EdgeInsets.zero,
+                margin: EdgeInsets.zero,
+                listStyleType: ListStyleType.DISC),
+            'ul': Style(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
+            ),
+          },
         ),
         if (section.items.isNotEmpty)
           renderSectionContainer(section.items, parentIndex: index)
@@ -91,7 +101,9 @@ class _PolicyComponentState extends State<PolicyComponent> {
       builder: (BuildContext context, AsyncSnapshot<PageModel> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return const Text('Loading....');
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           default:
             if (snapshot.hasError) {
               return Center(
