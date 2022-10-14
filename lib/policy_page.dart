@@ -18,10 +18,11 @@ class PolicyComponent extends StatefulWidget {
       : super(key: key);
 
   @override
-  _PolicyComponentState createState() => _PolicyComponentState();
+  State<PolicyComponent> createState() => _PolicyComponentState();
 }
 
 class _PolicyComponentState extends State<PolicyComponent> {
+  bool _loading = true;
   @override
   void initState() {
     super.initState();
@@ -95,14 +96,19 @@ class _PolicyComponentState extends State<PolicyComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: FutureBuilder<PageModel>(
+    return FutureBuilder<PageModel>(
       future: _getPage(),
       builder: (BuildContext context, AsyncSnapshot<PageModel> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return const Center(
-              child: CircularProgressIndicator(),
+            return const SizedBox(
+              height: double.maxFinite,
+              width: double.maxFinite,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: Colors.black,
+                ),
+              ),
             );
           default:
             if (snapshot.hasError) {
@@ -119,6 +125,7 @@ class _PolicyComponentState extends State<PolicyComponent> {
 
               return SingleChildScrollView(
                   child: Container(
+                padding: const EdgeInsets.all(5),
                 child: Column(children: [
                   if (introHtml != null)
                     Html(
@@ -127,11 +134,10 @@ class _PolicyComponentState extends State<PolicyComponent> {
                     ),
                   renderSectionContainer(sections, parentIndex: '')
                 ]),
-                padding: const EdgeInsets.all(5),
               ));
             }
         }
       },
-    ));
+    );
   }
 }
