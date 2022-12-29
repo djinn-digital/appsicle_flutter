@@ -52,11 +52,11 @@ class _PolicyComponentState extends State<PolicyComponent> {
           style: {
             'li': Style(
                 padding: EdgeInsets.zero,
-                margin: EdgeInsets.zero,
-                listStyleType: ListStyleType.DISC),
+                margin: Margins.zero,
+                listStyleType: ListStyleType.disc),
             'ul': Style(
               padding: EdgeInsets.zero,
-              margin: EdgeInsets.zero,
+              margin: Margins.zero,
             ),
           },
         ),
