@@ -1,6 +1,6 @@
 name: appsicle_flutter
 description: A library for displaying content from an appsicle.co site.
-version: 0.0.2
+version: 0.0.3
 homepage: https://appsicle.co/libraries/flutter
 
 environment:
