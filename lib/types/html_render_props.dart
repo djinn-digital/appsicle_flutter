@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:html/dom.dart' as dom;
+
+typedef OnTap = void Function(
+    String? url, Map<String, String> attributes, dom.Element? element);
 
 class HtmlRenderProps {
-  final void Function(String?, RenderContext, Map<String, String>, dynamic)?
-      onLinkTap;
+  final OnTap? onLinkTap;
 
   HtmlRenderProps({this.onLinkTap});
 }
