@@ -51,11 +51,11 @@ class _PolicyComponentState extends State<PolicyComponent> {
           onLinkTap: widget.htmlRenderProps?.onLinkTap,
           style: {
             'li': Style(
-                padding: EdgeInsets.zero,
+                padding: HtmlPaddings.zero,
                 margin: Margins.zero,
                 listStyleType: ListStyleType.disc),
             'ul': Style(
-              padding: EdgeInsets.zero,
+              padding: HtmlPaddings.zero,
               margin: Margins.zero,
             ),
           },
